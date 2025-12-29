@@ -7,8 +7,7 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-latest 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -39,3 +38,5 @@ jobs:
           docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:$TAG_SHA .
           docker push $IMAGE_NAME:latest
           docker push $IMAGE_NAME:$TAG_SHA
+  deploy:
+    runs-on: [self-hosted, ForrestGump]
