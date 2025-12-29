@@ -51,7 +51,9 @@ jobs:
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/expense-tracker:latest
 
       - name: Stop existing containers
-        run: docker compose down || true
+        run: |
+            docker compose down
+        continue-on-error: true
 
       - name: Start application
         run: docker compose up -d
