@@ -23,5 +23,5 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Build Docker image
-        run: docker build -t expense-tracker-app .
+        run: docker build -t expense-tracker-app:${{ github.sha }} .
 
