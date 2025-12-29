@@ -15,7 +15,7 @@ services:
       retries: 5
 
   expense-app:
-    image: yourusername/expense-tracker-app:latest
+    image: yourusername/expense-tracker-app:44b49211f7d639d6e09a806e42e5644652dcfe55
     container_name: expense-app
     ports:
       - "8080:8080"
