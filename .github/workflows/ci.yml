@@ -39,4 +39,19 @@ jobs:
           docker push $IMAGE_NAME:latest
           docker push $IMAGE_NAME:$TAG_SHA
   deploy:
+    name: Deploy on Self-Hosted Runner
     runs-on: [self-hosted, ForrestGump]
+    needs: build-and-push
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Pull latest Docker image
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/expense-tracker:latest
+
+      - name: Stop existing containers
+        run: docker compose down || true
+
+      - name: Start application
+        run: docker compose up -d
